@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Contact</string>
+    <string name="nom">Nom</string>
+    <string name="prenom">Prenom</string>
+    <string name="telephone">Téléphone</string>
+    <string name="valider">Valider</string>
+    <string name="telephone_dial">tel:%1$s</string>
+    <string name="data_saved">Données enregistrées</string>
+    <string name="action_contact">contact</string>
+    <string name="ajouter">Ajouter un contact</string>
+    <string name="contact_added">Contact ajouté !</string>
+</resources>
