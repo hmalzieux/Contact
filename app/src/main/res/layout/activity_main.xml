@@ -65,17 +65,23 @@
         android:layout_below="@+id/r3">
         <Button
             android:id="@+id/but_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/ajouter" />
+        <Button
+            android:id="@+id/but_clear"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/valider" />
+            android:text="@string/clear" />
     </LinearLayout>
     <Button
         android:id="@+id/but_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/ajouter"
+        android:text="@string/print_data"
         android:layout_below="@+id/r4"
         android:layout_centerHorizontal="true" />
     <TextView

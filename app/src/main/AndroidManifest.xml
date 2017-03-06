@@ -22,7 +22,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.hugo.contact.MainActivity" />
         </activity>
-        <activity android:name=".NouveauContactActivity"></activity>
     </application>
 
 </manifest>

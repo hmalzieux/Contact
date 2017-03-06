@@ -3,35 +3,37 @@ package com.example.hugo.contact;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.ResourceCursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by hugo on 06/02/2017.
  */
 
-public class ItemAdapter extends ResourceCursorAdapter {
+public class ItemAdapter extends BaseAdapter {
 
     private Context mContext;
-    private Cursor cursor;
     private LayoutInflater inflater;
-    public ItemAdapter(Context c, int layout, Cursor cursor, int flags) {
-        super(c,layout, cursor,flags);
+    private ArrayList<String[]> contenu;
+    public ItemAdapter(Context c, ArrayList<String[]> content) {
         mContext = c;
-        this.cursor = cursor;
+        this.contenu = content;
     }
 
     @Override
     public int getCount() {
-        return cursor.getCount();
+        return contenu.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public String[] getItem(int i) {
+        return contenu.get(i);
     }
 
     @Override
@@ -51,20 +53,10 @@ public class ItemAdapter extends ResourceCursorAdapter {
         TextView nameView = (TextView) listView.findViewById(R.id.user_name_item);
         TextView telephoneView = (TextView) listView.findViewById(R.id.user_telephone_item);
 
-        nameView.setText(cursor.getString(1));
-        firstNameView.setText(cursor.getString(cursor.getColumnIndex("COL_PRENOM")));
-        telephoneView.setText(cursor.getString(cursor.getColumnIndex("COL_TELEPHONE")));
+        nameView.setText(contenu.get(position)[0]);
+        firstNameView.setText(contenu.get(position)[1]);
+        telephoneView.setText(contenu.get(position)[2]);
         return listView;
     }
 
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-        TextView firstNameView = (TextView) view.findViewById(R.id.user_firstname_item);
-        TextView nameView = (TextView) view.findViewById(R.id.user_name_item);
-        TextView telephoneView = (TextView) view.findViewById(R.id.user_telephone_item);
-
-        nameView.setText(cursor.getString(1));
-        firstNameView.setText(cursor.getString(2));
-        telephoneView.setText(cursor.getString(3));
-    }
 }

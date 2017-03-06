@@ -9,4 +9,6 @@
     <string name="action_contact">contact</string>
     <string name="ajouter">Ajouter un contact</string>
     <string name="contact_added">Contact ajouté !</string>
+    <string name="clear">clear</string>
+    <string name="print_data">Afficher les contacts</string>
 </resources>

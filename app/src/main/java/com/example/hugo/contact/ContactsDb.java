@@ -5,7 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Created by hugo on 09/02/2017.
@@ -55,17 +56,36 @@ public class ContactsDb extends SQLiteOpenHelper {
 
     public void deleteAllData() {
         this.getWritableDatabase().delete(TABLE_NAME,null,null);
-        Log.d("delete data","delete");
     }
 
-    public Cursor getAllRows(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.query(TABLE_NAME,new String[] {COL_NOM,COL_NOM,COL_PRENOM},null, null, null, null, null);
-        res.close();
-        return res;
+    public ArrayList<String[]> getAllRows(SQLiteDatabase db){
+        ArrayList<String[]> list = new ArrayList<String[]>();
+        String selectQuery = "SELECT NOM, PRENOM, TELEPHONE FROM " + TABLE_NAME;
+        try {
+
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            try {
+
+                // looping through all rows and adding to list
+                if (cursor.moveToFirst()) {
+                    do {
+                        list.add(new String[]{cursor.getString(0),cursor.getString(1),cursor.getString(2)});
+                    } while (cursor.moveToNext());
+                }
+
+            } finally {
+                try { cursor.close(); } catch (Exception ignore) {}
+            }
+
+        } finally {
+            try { db.close(); } catch (Exception ignore) {}
+            db.close();
+        }
+
+        return list;
     }
 
-    public Cursor getPhoneNumber( Long id){
+    public String getPhoneNumber( Long id){
         SQLiteDatabase db = this.getWritableDatabase();
         String where = KEY_ID + "="+id;
         Cursor c = db.query(true, TABLE_NAME, new String[]{COL_TELEPHONE}, where, null, null, null, null,null);
@@ -73,7 +93,7 @@ public class ContactsDb extends SQLiteOpenHelper {
             c.moveToFirst();
         }
         c.close();
-        return c;
+        return "";
     }
 
 }
